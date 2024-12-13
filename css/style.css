@@ -1,0 +1,31 @@
+.text-circuit {
+    color: red;
+}
+
+.text-lieu {
+    color: blue;
+}
+
+.text-musee {
+    color: green;
+}
+
+#item-list li {
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+}
+
+#item-list li:hover {
+    background-color: #f0f0f0;
+}
+
+#details-container {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    margin-top: 1rem;
+}
