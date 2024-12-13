@@ -3,11 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluation JS</title>
+    <title>Tourisme à La Réunion</title>    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Découvrez La Réunion</h1>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Rechercher...">
+                <div class="filter-options">
+                    <label><input type="checkbox" value="circuits" checked> Circuits</label>
+                    <label><input type="checkbox" value="lieux" checked> Lieux</label>
+                    <label><input type="checkbox" value="musees" checked> Musées</label>
+                </div>
+            </div>
+        </header>
 
-    
-    
+        <main>
+            <div class="content">
+                <div id="map"></div>
+                <div class="list-container">
+                    <h2>Points d'intérêt</h2>
+                    <ul id="poiList"></ul>
+                </div>
+                <div class="detail-container" id="detailPanel">
+                    <h2>Détails</h2>
+                    <div id="detailContent"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
