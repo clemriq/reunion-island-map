@@ -88,7 +88,7 @@ async function showDetails(item) {
         <button id="close-details-button" class="absolute top-4 left-4 bg-red-600 text-white p-2 rounded-full shadow-lg flex items-center justify-center">
             <i class="fa-solid fa-times text-xl"></i>
         </button>
-        <h2 class="text-xl font-bold mb-2">${nom}</h2>
+        <h2 class="text-xl font-bold mb-2 mt-12">${nom}</h2>
         <p class="mb-2">${description}</p>
         <p class="mb-2"><a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}" target="_blank" class="text-blue-500 underline">Voir sur Google Maps</a></p>
         <p class="mb-2">Adresse: ${address}</p>
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 showDetails(item);
                 map.flyTo([item.latitude || item.location?.lat || item.coordonnees_geographiques?.lat, item.longitude || item.location?.lon || item.coordonnees_geographiques?.lon], 15);
                 item.marker.openPopup();
-                updateMap(map, [item]); // Afficher uniquement ce marqueur
+                updateMap(map, [item]); 
             });
             itemList.appendChild(listItem);
         });
