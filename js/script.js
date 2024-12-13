@@ -107,6 +107,24 @@ function showDetails(item) {
     detailsContainer.innerHTML = detailsHtml;
 }
 
+// Fonction de recherche
+function searchItems(data, query) {
+    return data.filter(item => {
+        const nom = item.nom || item.nom_du_lieu_remarquable || item.nom_officiel_du_musee;
+        return nom.toLowerCase().includes(query.toLowerCase());
+    });
+}
+
+// Fonction pour mettre à jour la carte avec les marqueurs filtrés
+function updateMap(map, filteredData) {
+    map.eachLayer(layer => {
+        if (layer instanceof L.Marker) {
+            map.removeLayer(layer);
+        }
+    });
+    addMarkersToMap(map, filteredData);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     const { circuits, lieux, musees } = await loadData();
     const allData = [...circuits, ...lieux, ...musees];
@@ -134,43 +152,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     const searchInput = document.getElementById('search-input');
-    const filterCheckboxes = document.querySelectorAll('#filter-container input[type="checkbox"]');
 
-    function getSelectedFilters() {
-        const selectedFilters = [];
-        filterCheckboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                selectedFilters.push(checkbox.value);
-            }
-        });
-        return selectedFilters;
-    }
-
-    searchInput.addEventListener('input', () => {
-        const keyword = searchInput.value;
-        const selectedFilters = getSelectedFilters();
-        const filteredData = filterData(allData, keyword, selectedFilters);
-        updateList(filteredData);
-        updateMap(map, filteredData);
-    });
-
-    filterCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            const keyword = searchInput.value;
-            const selectedFilters = getSelectedFilters();
-            const filteredData = filterData(allData, keyword, selectedFilters);
-            updateList(filteredData);
-            updateMap(map, filteredData);
-        });
-    });
-
-    function updateList(data) {
+    function updateList(filteredData) {
         itemList.innerHTML = '';
-        data.sort((a, b) => {
-            const nomA = a.nom || a.nom_du_lieu_remarquable || a.nom_officiel_du_musee;
-            const nomB = b.nom || b.nom_du_lieu_remarquable || b.nom_officiel_du_musee;
-            return nomA.localeCompare(nomB);
-        }).forEach(item => {
+        filteredData.forEach(item => {
             const listItem = document.createElement('li');
             const nom = item.nom || item.nom_du_lieu_remarquable || item.nom_officiel_du_musee;
             listItem.textContent = nom;
@@ -185,13 +170,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    function updateMap(map, data) {
-        map.eachLayer(layer => {
-            if (layer instanceof L.Marker) {
-                map.removeLayer(layer);
-            }
-        });
-
-        addMarkersToMap(map, data);
-    }
+    searchInput.addEventListener('input', () => {
+        const keyword = searchInput.value;
+        const filteredData = searchItems(allData, keyword);
+        updateList(filteredData);
+        updateMap(map, filteredData);
+    });
 });
