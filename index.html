@@ -36,9 +36,12 @@
         <div id="list-container" class="w-1/4 p-4 overflow-y-auto h-screen">
             <ul id="item-list" class="space-y-2"></ul>
         </div>
-        <div id="map-container" class="w-1/2 h-screen relative">
+        <div id="map-container" class="w-3/4 h-screen relative">
+            <button id="center-map-button" class="absolute top-4 right-4 bg-blue-600 text-white p-3 rounded-full shadow-lg flex items-center justify-center">
+                <i class="fa-solid fa-map-pin text-2xl"></i>
+            </button>
         </div>
-        <div id="details-container" class="w-1/4 p-4 overflow-y-auto h-screen bg-white relative">
+        <div id="details-container" class="w-1/4 p-4 overflow-y-auto h-screen bg-white relative hidden">
             <button id="close-details-button" class="absolute top-4 left-4 bg-red-600 text-white p-2 rounded-full shadow-lg flex items-center justify-center">
                 <i class="fa-solid fa-times text-xl"></i>
             </button>

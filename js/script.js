@@ -75,6 +75,7 @@ function filterData(data, keyword, types) {
 // Affichage des détails d'un élément
 async function showDetails(item) {
     const detailsContainer = document.getElementById('details-container');
+    detailsContainer.classList.remove('hidden'); // Afficher les détails
     const nom = item.nom || item.nom_du_lieu_remarquable || item.nom_officiel_du_musee;
     const description = item.description || item.accroche || item.adresse;
     const latitude = item.latitude || item.location?.lat || item.coordonnees_geographiques?.lat;
@@ -121,6 +122,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const clearSearchButton = document.getElementById('clear-search-button');
     const filterContainer = document.getElementById('filter-container');
     const detailsContainer = document.getElementById('details-container');
+    const closeDetailsButton = document.getElementById('close-details-button');
 
     function updateList(filteredData) {
         itemList.innerHTML = '';
@@ -181,7 +183,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Ajout du gestionnaire d'événement pour le bouton de fermeture des détails
     detailsContainer.addEventListener('click', (event) => {
         if (event.target.id === 'close-details-button' || event.target.closest('#close-details-button')) {
-            detailsContainer.innerHTML = ''; // Fermer les détails
+            detailsContainer.classList.add('hidden'); // Fermer les détails
             map.closePopup(); // Fermer le popup en cours de consultation
             map.flyTo([-21.115141, 55.536384], 10); // Recentrer la carte
             applyFilters(); // Réappliquer les filtres

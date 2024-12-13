@@ -29,3 +29,7 @@
     background-color: #fff;
     margin-top: 1rem;
 }
+
+#center-map-button {
+    z-index: 1000;
+}
