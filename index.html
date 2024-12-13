@@ -2,82 +2,48 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Exploration de La Réunion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application de Tourisme - Réunion</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-gray-50 antialiased">
-    <div class="min-h-screen flex flex-col">
-        <!-- Barre de navigation moderne -->
-        <nav class="bg-white shadow-md">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <h1 class="text-2xl font-bold text-blue-600">🏝️ La Réunion</h1>
-                        </div>
-                    </div>
-                </div>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-blue-600 text-white p-4">
+        <h1 class="text-2xl font-bold">Découverte de la Réunion</h1>
+        <div id="search-container" class="mt-4 flex space-x-2">
+            <input type="text" id="search-input" placeholder="Rechercher..." class="p-2 border border-gray-300 rounded text-black">
+            <div id="filter-container" class="flex space-x-2">
+                <label class="flex items-center">
+                    <input type="checkbox" id="filter-all" value="all" class="mr-2"> Tous
+                </label>
+                <label class="flex items-center">
+                    <input type="checkbox" id="filter-circuit" value="circuit" class="mr-2"> Circuits
+                </label>
+                <label class="flex items-center">
+                    <input type="checkbox" id="filter-lieu" value="lieu" class="mr-2"> Lieux
+                </label>
+                <label class="flex items-center">
+                    <input type="checkbox" id="filter-musee" value="musee" class="mr-2"> Musées
+                </label>
             </div>
-        </nav>
-
-        <!-- Conteneur principal -->
-        <main class="flex-grow container mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Zone de filtres et recherche -->
-            <div class="lg:col-span-3 bg-white rounded-lg shadow-md p-4">
-                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                    <div class="flex-grow">
-                        <input 
-                            type="text" 
-                            id="searchInput" 
-                            placeholder="Rechercher un lieu, un circuit..." 
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        >
-                    </div>
-                    <div class="flex space-x-4">
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="typeFilter" value="circuit" class="form-checkbox h-5 w-5 text-blue-600">
-                            <span class="ml-2 text-gray-700">Circuits</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="typeFilter" value="lieu" class="form-checkbox h-5 w-5 text-green-600">
-                            <span class="ml-2 text-gray-700">Lieux</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="typeFilter" value="musee" class="form-checkbox h-5 w-5 text-red-600">
-                            <span class="ml-2 text-gray-700">Musées</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Liste des éléments -->
-            <div class="bg-white rounded-lg shadow-md overflow-y-auto max-h-[70vh]" id="itemList">
-                <!-- Les éléments seront chargés dynamiquement ici -->
-            </div>
-
-            <!-- Carte interactive -->
-            <div class="lg:col-span-1 bg-white rounded-lg shadow-md h-[70vh]">
-                <div id="mapContainer" class="w-full h-full rounded-lg"></div>
-            </div>
-
-            <!-- Détails de l'élément -->
-            <div class="bg-white rounded-lg shadow-md p-6" id="itemDetails">
-                <h2 class="text-xl font-semibold text-gray-800 mb-4">Sélectionnez un élément</h2>
-                <p class="text-gray-600">Cliquez sur un élément de la liste ou un marqueur sur la carte pour voir plus de détails.</p>
-            </div>
-        </main>
-
-        <!-- Footer -->
-        <footer class="bg-white shadow-md">
-            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center">
-                <p class="text-gray-500">© 2024 Exploration de La Réunion</p>
-            </div>
-        </footer>
-    </div>
-
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        </div>
+    </header>
+    <main class="flex">
+        <div id="list-container" class="w-1/4 p-4 overflow-y-auto h-screen">
+            <ul id="item-list" class="space-y-2"></ul>
+        </div>
+        <div id="map-container" class="w-1/2 h-screen relative"></div>
+        <div id="details-container" class="w-1/4 p-4 overflow-y-auto h-screen bg-white"></div>
+    </main>
+    <footer class="bg-blue-600 text-white p-4 text-center">
+        <p>Application de Tourisme - Réunion</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
     <script src="js/script.js"></script>
 </body>
 </html>
