@@ -93,18 +93,5 @@ project-folder
 
 ---
 
-## ♻️ **Contributions**
-
-Les contributions sont les bienvenues ♥ ! 
-
-1. Forkez le projet.
-2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nom-fonctionnalite`).
-3. Commitez vos modifications (`git commit -m "Ajout d'une fonctionnalité"`).
-4. Faites un push sur la branche (`git push origin feature/nom-fonctionnalite`).
-5. Ouvrez une Pull Request.
-
----
-
-## © **Licence**
-
-Ce projet est sous licence [MIT](LICENSE). Vous êtes libre de l'utiliser, de le modifier et de le distribuer.
+## 👤 **Auteur**
+Ce projet a été réalisé par **Clément Riquet**
