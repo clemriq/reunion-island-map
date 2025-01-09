@@ -44,7 +44,7 @@ Suivez ces étapes pour configurer et exécuter le projet localement :
 
 1. Clonez le dépôt Git :
    ```bash
-   git clone https://github.com/votre_nom_utilisateur/tourisme-reunion.git
+   git clone https://github.com/clemriq/eval-js-sdw_24.git
    ```
 
 2. Installez les dépendances :
