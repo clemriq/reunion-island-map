@@ -22,8 +22,7 @@ Explorez les richesses touristiques de l'île de La Réunion 🌍. Cette applica
 - [Utilisation](#-utilisation)
 - [Architecture](#-architecture)
 - [Technologies](#%EF%B8%8F-technologies)
-- [Contributions](#-contributions)
-- [Licence](#%C2%A9-licence)
+- [Auteur](#-Auteur)
 </details>
 
 ---
